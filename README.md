@@ -16,13 +16,19 @@ The DApp User Interface when running should look like...
 
 ### Activity Diagram
 
+![truffle test](images/activity_diagram.png)
+
 ### Sequence Diagram
 
 ![truffle test](images/sequence_diagram.png)
 
 ### State Diagram
 
+![truffle test](images/state_diagram.png)
+
 ### Class Diagram
+
+![truffle test](images/class_diagram.png)
 
 ## Getting Started
 
