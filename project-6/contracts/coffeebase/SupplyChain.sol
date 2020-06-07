@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.16;
 
 import "../coffeecore/Ownable.sol";
 import "../coffeeaccesscontrol/ConsumerRole.sol";
@@ -16,7 +16,7 @@ contract SupplyChain is
     RetailerRole
 {
     // Define 'owner'
-    address owner;
+    address payable _owner;
 
     // Define a variable called 'upc' for Universal Product Code (UPC)
     uint256 upc;
@@ -61,7 +61,7 @@ contract SupplyChain is
         State itemState; // Product State as represented in the enum above
         address distributorID; // Metamask-Ethereum address of the Distributor
         address retailerID; // Metamask-Ethereum address of the Retailer
-        address consumerID; // Metamask-Ethereum address of the Consumer
+        address payable consumerID; // Metamask-Ethereum address of the Consumer
     }
 
     // Define 8 events with the same 8 state values and accept 'upc' as input argument
@@ -76,7 +76,7 @@ contract SupplyChain is
 
     // Define a modifer that checks to see if msg.sender == owner of the contract
     modifier onlyOwner() {
-        require(msg.sender == owner, "The sender is not the owner.");
+        require(msg.sender == _owner, "The sender is not the owner.");
         _;
     }
 
@@ -155,15 +155,15 @@ contract SupplyChain is
     // and set 'sku' to 1
     // and set 'upc' to 1
     constructor() public payable {
-        owner = msg.sender;
+        _owner = msg.sender;
         sku = 1;
         upc = 1;
     }
 
     // Define a function 'kill' if required
     function kill() public {
-        if (msg.sender == owner) {
-            selfdestruct(owner);
+        if (msg.sender == _owner) {
+            selfdestruct(_owner);
         }
     }
 
@@ -171,11 +171,11 @@ contract SupplyChain is
     function harvestItem(
         uint256 _upc,
         address _originFarmerID,
-        string _originFarmName,
-        string _originFarmInformation,
-        string _originFarmLatitude,
-        string _originFarmLongitude,
-        string _productNotes
+        string memory _originFarmName,
+        string memory _originFarmInformation,
+        string memory _originFarmLatitude,
+        string memory _originFarmLongitude,
+        string memory _productNotes
     ) public onlyFarmer {
         // Add the new item as part of Harvest
         Item memory item;
@@ -325,10 +325,10 @@ contract SupplyChain is
             uint256 itemUPC,
             address ownerID,
             address originFarmerID,
-            string originFarmName,
-            string originFarmInformation,
-            string originFarmLatitude,
-            string originFarmLongitude
+            string memory originFarmName,
+            string memory originFarmInformation,
+            string memory originFarmLatitude,
+            string memory originFarmLongitude
         )
     {
         // Assign values to the 8 parameters
@@ -361,7 +361,7 @@ contract SupplyChain is
             uint256 itemSKU,
             uint256 itemUPC,
             uint256 productID,
-            string productNotes,
+            string memory productNotes,
             uint256 productPrice,
             uint256 itemState,
             address distributorID,

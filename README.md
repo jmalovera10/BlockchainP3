@@ -35,7 +35,7 @@ Please make sure you've already installed ganache-cli, Truffle and enabled MetaM
 #### Truffle Version
 
 ```
-5.0.21
+5.1.29
 ```
 
 #### Ganache CLI Version
@@ -53,7 +53,7 @@ Please make sure you've already installed ganache-cli, Truffle and enabled MetaM
 ### Contract Address
 
 ```
-10.19.0
+0x24588D73a97Be9b656897a7f0D9d834dBF856e35
 ```
 
 ### Installing
